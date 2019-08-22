@@ -1,0 +1,18 @@
+name: matrix4_transform
+description: Helper math class for easily creating Matrix4 transformations, that you can use in Container's transform parameter and elsewhere.
+version: 1.0.0
+author: Marcelo Glasberg <marcglasberg@gmail.com>
+homepage: https://github.com/marcglasberg/matrix4_transform
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
