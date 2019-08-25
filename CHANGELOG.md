@@ -6,7 +6,7 @@
 
 * Docs change. 
 
-## [1.0.6] - 2019/08/24
+## [1.0.8] - 2019/08/24
 
 * Matrix4TransformTween. 
 

@@ -4,7 +4,7 @@ Helper class for easily creating Matrix4 transformations,
 that you can use in Container's `transform` parameter,
 and elsewhere.
 
-![alt text](./example/alignpositioned_and_matrix4transform.webm)
+![alt text](./example/lib/animated_align_positioned.gif)
 
 Example:
 
