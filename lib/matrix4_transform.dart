@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 // Developed by Marcelo Glasberg (Aug 2019).
 // For more info, see: https://pub.dartlang.org/packages/matrix4_transform
@@ -27,7 +29,7 @@ class Matrix4Transform {
 
   Matrix4Transform() : m = Matrix4.identity();
 
-  Matrix4Transform.from(Matrix4 m) : m = m.clone();
+  Matrix4Transform.from(Matrix4 m) : m = (m == null) ? null : m.clone();
 
   Matrix4Transform._(this.m);
 
@@ -51,6 +53,16 @@ class Matrix4Transform {
   /// If you define an origin it will have that point as the axis of rotation.
   Matrix4Transform rotateDegrees(double angleDegrees, {Offset origin}) =>
       rotate(_toRadians(angleDegrees), origin: origin);
+
+  /// Rotates by [angleDegrees] degrees (0 to 360 one turn), clockwise.
+  /// The axis of rotation will be the center of the object with the given size.
+  Matrix4Transform rotateByCenterDegrees(double angleDegrees, Size size) =>
+      rotateByCenter(_toRadians(angleDegrees), size);
+
+  /// Rotates by [angleRadians] radians, clockwise.
+  /// The axis of rotation will be the center of the object with the given size.
+  Matrix4Transform rotateByCenter(double angleRadians, Size size) =>
+      rotate(angleRadians, origin: Offset(size.width / 2, size.height / 2));
 
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical).
   /// Positive goes down/right.
@@ -162,3 +174,28 @@ class Matrix4Transform {
 
   double _toRadians(double angleDegrees) => angleDegrees * pi / 180;
 }
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////
+
+/// An interpolation between two [Matrix4Transform]s.
+///
+/// This class specializes the interpolation of [Tween<Matrix4Transform>] to be
+/// appropriate for transformation matrices.
+///
+/// See [Tween] for a discussion on how to use interpolation objects.
+class Matrix4TransformTween extends Tween<Matrix4Transform> {
+  /// Creates a [Matrix4] tween.
+  ///
+  /// The [begin] and [end] properties must be non-null before the tween is
+  /// first used, but the arguments can be null if the values are going to be
+  /// filled in later.
+  Matrix4TransformTween({Matrix4Transform begin, Matrix4Transform end})
+      : super(begin: begin, end: end);
+
+  @override
+  Matrix4Transform lerp(double t) {
+    return Matrix4Transform.from(Matrix4Tween(begin: begin.matrix4, end: end.matrix4).lerp(t));
+  }
+}
+
+// /////////////////////////////////////////////////////////////////////////////////////////////////

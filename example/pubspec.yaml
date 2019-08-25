@@ -1,5 +1,5 @@
 name: example
-description: Matrix4Transform Example
+description: Examples for matrix4_transform.
 version: 1.0.0+1
 
 environment:

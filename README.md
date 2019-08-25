@@ -4,6 +4,8 @@ Helper class for easily creating Matrix4 transformations,
 that you can use in Container's `transform` parameter,
 and elsewhere.
 
+![alt text](./example/alignpositioned_and_matrix4transform.webm)
+
 Example:
 
     // Rotates the Container 45 degrees and then
@@ -19,7 +21,7 @@ Example:
     
 To see it in action, run the example in the [example tab](https://pub.dartlang.org/packages/matrix4_transform#-example-tab-).    
 
-##How to use it 
+## How to use it 
 
 `Matrix4Transform` is **immutable** (in contrast, Matrix4 is mutable).
 
@@ -51,10 +53,12 @@ If you already have a matrix4 and want to further transform it, you can use the 
     
     var myTransform = Matrix4Transform.from(myMatrix);
 
-##Methods you can use
+## Methods you can use
 
 - `rotate(double angleRadians, {Offset origin})`
 - `rotateDegrees(double angleDegrees, {Offset origin})`
+- `rotateByCenterDegrees(double angleDegrees, Size size)`
+- `rotateByCenter(_toRadians(angleDegrees), size)`  
 - `translate({double x = 0, double y = 0})`
 - `translateOriginalCoordinates({double x = 0, double y = 0})`
 - `scale(double factor, {Offset origin})`
@@ -77,31 +81,37 @@ And, of course:
 
 - `Matrix4 toMatrix4`
 
-##Animate it
+## Tween
 
-You can put the `Matrix4Transform` in a `Container`'s `transform` parameter,
-and then animate the `Matrix4Transform` parameters.
+A `Matrix4TransformTween` is provided in this package, and can be used in animations.
 
-Then, you can use <a href="https://pub.dev/packages/align_positioned">AlignPositioned</a> 
-or `Stack`+`Positioned` to move the `Container` 
-around in relation to the screen or some parent widget.  
+## Animate it
 
-`Matrix4Transform` can also be used in `AnimatedContainer`'s `transform` parameter.
-However, since `Matrix4Tween` will not animate linearly as you'd expect, it's possible
-that the intermediary transformations will be "strange", although the start and end should be correct.    
+A `Matrix4Transform` can be used to animate:
+
+* `AlignPositioned` or `AnimatedAlignPositioned` widgets 
+from the <a href="https://pub.dev/packages/align_positioned">AlignPositioned</a> package,
+that accept a `Matrix4Transform` directly. The center of rotation/scale can be defined
+by their `alignment` parameter. 
+
+* Any widget that accepts a Matrix4 transformation parameter, like `Container`, or `AnimatedContainer`.
+Note: Since `Matrix4Tween` will not animate linearly as you'd expect, it's possible
+that the intermediary transformations will be "strange", although the start and end should be correct.
 
 ***
 
 *Special thanks to Martin Kamleithner and Simon Lightfoot.*
 
-*Other Flutter packages I've authored:* 
+*The Flutter packages I've authored:* 
 * <a href="https://pub.dev/packages/async_redux">async_redux</a>
+* <a href="https://pub.dev/packages/align_positioned">align_positioned</a>
 * <a href="https://pub.dev/packages/network_to_file_image">network_to_file_image</a>
-* <a href="https://pub.dev/packages/align_positioned">align_positioned</a> 
+* <a href="https://pub.dev/packages/matrix4_transform">matrix4_transform</a> 
 * <a href="https://pub.dev/packages/back_button_interceptor">back_button_interceptor</a>
 * <a href="https://pub.dev/packages/indexed_list_view">indexed_list_view</a> 
 * <a href="https://pub.dev/packages/animated_size_and_fade">animated_size_and_fade</a>
 
-https://github.com/marcglasberg<br>
-https://twitter.com/marcglasberg<br>
-https://stackoverflow.com/users/3411681/marcg<br>
+---<br>_https://github.com/marcglasberg_<br>
+_https://twitter.com/glasbergmarcelo_<br>
+_https://stackoverflow.com/users/3411681/marcg_<br>
+_https://medium.com/@marcglasberg_<br>
