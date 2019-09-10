@@ -96,7 +96,8 @@ class Matrix4Transform {
   /// Same size for 1 (and passing null is the same as passing 1).
   /// No size for 0.
   /// /// Passing null is the same as passing 1.
-  Matrix4Transform scale(double factor, {Offset origin}) => scaleBy(x: factor, y: factor);
+  Matrix4Transform scale(double factor, {Offset origin}) =>
+      scaleBy(x: factor, y: factor, origin: origin);
 
   /// Scales by a factor of [x] (horizontal) and [y] (vertical).
   /// Gets bigger for >1.
@@ -123,14 +124,16 @@ class Matrix4Transform {
   /// Smaller for <1.
   /// Same size for 1 (and passing null is the same as passing 1).
   /// No size for 0.
-  Matrix4Transform scaleHorizontally(double factor) => scaleBy(x: factor);
+  Matrix4Transform scaleHorizontally(double factor, {Offset origin}) =>
+      scaleBy(x: factor, origin: origin);
 
   /// Scales by [factor] vertically. Keeps the same horizontal scale.
   /// Gets bigger for >1.
   /// Smaller for <1.
   /// Same size for 1 (and passing null is the same as passing 1).
   /// No size for 0.
-  Matrix4Transform scaleVertically(double factor) => scaleBy(y: factor);
+  Matrix4Transform scaleVertically(double factor, {Offset origin}) =>
+      scaleBy(y: factor, origin: origin);
 
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical).
   /// Positive goes down/right.

@@ -10,3 +10,7 @@
 
 * Matrix4TransformTween. 
 
+## [1.1.0] - 2019/09/06
+
+* Fixed missing Offset in scale. 
+

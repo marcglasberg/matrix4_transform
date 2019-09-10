@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/matrix4_transform.svg)](https://pub.dartlang.org/packages/matrix4_transform)
+
 # matrix4_transform
 
 Helper class for easily creating Matrix4 transformations,
@@ -111,7 +113,7 @@ that the intermediary transformations will be "strange", although the start and 
 * <a href="https://pub.dev/packages/indexed_list_view">indexed_list_view</a> 
 * <a href="https://pub.dev/packages/animated_size_and_fade">animated_size_and_fade</a>
 
----<br>_https://github.com/marcglasberg_<br>
+---<br>_Marcelo Glasberg:_<br>_https://github.com/marcglasberg_<br>
 _https://twitter.com/glasbergmarcelo_<br>
 _https://stackoverflow.com/users/3411681/marcg_<br>
 _https://medium.com/@marcglasberg_<br>
