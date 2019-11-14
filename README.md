@@ -2,9 +2,10 @@
 
 # matrix4_transform
 
-Helper class for easily creating Matrix4 transformations,
-that you can use in Container's `transform` parameter,
-and elsewhere.
+Have you noticed the `transform` parameter in the `Container` and `Transform` widgets, 
+that let you move, rotate, resize and flip?
+
+This package is a helper math class that makes it easy to create Matrix4 transformations.
 
 ![alt text](./example/lib/animated_align_positioned.gif)
 
@@ -78,6 +79,9 @@ If you already have a matrix4 and want to further transform it, you can use the 
 - `upLeft(double distance)`
 - `downRight(double distance)`
 - `downLeft(double distance)`
+- `flipDiagonally({Offset origin})`
+- `flipHorizontally({Offset origin})`
+- `flipVertically({Offset origin})`
 
 And, of course:
 
@@ -106,6 +110,8 @@ that the intermediary transformations will be "strange", although the start and 
 
 *The Flutter packages I've authored:* 
 * <a href="https://pub.dev/packages/async_redux">async_redux</a>
+* <a href="https://pub.dev/packages/provider_for_redux">provider_for_redux</a>
+* <a href="https://pub.dev/packages/i18n_extension">i18n_extension</a>
 * <a href="https://pub.dev/packages/align_positioned">align_positioned</a>
 * <a href="https://pub.dev/packages/network_to_file_image">network_to_file_image</a>
 * <a href="https://pub.dev/packages/matrix4_transform">matrix4_transform</a> 

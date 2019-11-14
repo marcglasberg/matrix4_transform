@@ -175,6 +175,46 @@ class Matrix4Transform {
   /// Translates down and left by [distance] pixels.
   Matrix4Transform downLeft(double distance) => direction(pi * 3 / 4, distance);
 
+  Matrix4Transform flipDiagonally({Offset origin}) =>
+      _flipDegrees(horizontal: 180, vertical: 180, origin: origin);
+
+  Matrix4Transform flipHorizontally({Offset origin}) =>
+      _flipDegrees(horizontal: 180, origin: origin);
+
+  Matrix4Transform flipVertically({Offset origin}) => _flipDegrees(vertical: 180, origin: origin);
+
+  Matrix4Transform _flip({
+    double horizontal = 0.0,
+    double vertical = 0.0,
+    Offset origin,
+  }) {
+    if (((horizontal == null) || (horizontal == 0.0)) && ((vertical == null) || (vertical == 0.0)))
+      return this;
+    else if ((origin == null) || (origin.dx == 0.0 && origin.dy == 0.0))
+      return Matrix4Transform._(m.clone()
+        ..rotateY(horizontal)
+        ..rotateX(vertical));
+    else
+      return Matrix4Transform._(m.clone()
+        ..translate(origin.dx, origin.dy)
+        ..multiply(Matrix4.rotationY(horizontal))
+        ..multiply(Matrix4.rotationX(vertical))
+        ..translate(-origin.dx, -origin.dy));
+  }
+
+  /// Flips (with perspective) horizontally and vertically by [distance] pixels.
+  Matrix4Transform _flipDegrees({
+    double horizontal = 0.0,
+    double vertical = 0.0,
+    Offset origin,
+  }) {
+    return _flip(
+      horizontal: _toRadians(horizontal),
+      vertical: _toRadians(vertical),
+      origin: origin,
+    );
+  }
+
   double _toRadians(double angleDegrees) => angleDegrees * pi / 180;
 }
 

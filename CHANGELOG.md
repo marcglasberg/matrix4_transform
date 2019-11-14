@@ -1,16 +1,19 @@
-## [1.0.0] - 2019/08/22
+## [1.1.3] - 2019/09/23
 
-* Initial commit. 
-
-## [1.0.4] - 2019/08/22
-
-* Docs change. 
-
-## [1.0.9] - 2019/08/24
-
-* Matrix4TransformTween. 
+* FlipDiagonally, flipHorizontally, and flipVertically.
 
 ## [1.1.0] - 2019/09/06
 
 * Fixed missing Offset in scale. 
 
+## [1.0.9] - 2019/08/24
+
+* Matrix4TransformTween.
+
+## [1.0.4] - 2019/08/22
+
+* Docs change. 
+
+## [1.0.0] - 2019/08/22
+
+* Initial commit.
