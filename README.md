@@ -7,7 +7,7 @@ that let you move, rotate, resize and flip?
 
 This package is a helper math class that makes it easy to create Matrix4 transformations.
 
-![alt text](./example/lib/animated_align_positioned.gif)
+![](./example/lib/animated_align_positioned.gif)
 
 Example:
 
