@@ -1,3 +1,7 @@
+## [1.1.5] - 2020/09/14
+
+* Docs improvement.
+
 ## [1.1.3] - 2019/09/23
 
 * FlipDiagonally, flipHorizontally, and flipVertically.
