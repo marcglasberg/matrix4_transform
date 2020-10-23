@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/animation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
@@ -29,7 +28,7 @@ class Matrix4Transform {
 
   Matrix4Transform() : m = Matrix4.identity();
 
-  Matrix4Transform.from(Matrix4 m) : m = (m == null) ? null : m.clone();
+  Matrix4Transform.from(Matrix4 m) : m = m?.clone();
 
   Matrix4Transform._(this.m);
 
@@ -61,8 +60,10 @@ class Matrix4Transform {
 
   /// Rotates by [angleRadians] radians, clockwise.
   /// The axis of rotation will be the center of the object with the given size.
-  Matrix4Transform rotateByCenter(double angleRadians, Size size) =>
-      rotate(angleRadians, origin: Offset(size.width / 2, size.height / 2));
+  Matrix4Transform rotateByCenter(double angleRadians, Size size) => rotate(
+        angleRadians,
+        origin: Offset(size.width / 2, size.height / 2),
+      );
 
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical).
   /// Positive goes down/right.
@@ -71,7 +72,9 @@ class Matrix4Transform {
     x ??= 0;
     y ??= 0;
 
-    return (x == 0 && y == 0) ? this : Matrix4Transform._(m.clone()..leftTranslate(x, y));
+    return (x == 0 && y == 0) //
+        ? this
+        : Matrix4Transform._(m.clone()..leftTranslate(x, y));
   }
 
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical), but in
@@ -83,11 +86,16 @@ class Matrix4Transform {
   /// Example: If you resize if by 1.5, and then call this method to translate
   /// x:10 it will translate by 15 pixels.
   ///
-  Matrix4Transform translateOriginalCoordinates({double x = 0, double y = 0}) {
+  Matrix4Transform translateOriginalCoordinates({
+    double x = 0,
+    double y = 0,
+  }) {
     x ??= 0;
     y ??= 0;
 
-    return (x == 0 && y == 0) ? this : Matrix4Transform._(m.clone()..translate(x, y));
+    return (x == 0 && y == 0) //
+        ? this
+        : Matrix4Transform._(m.clone()..translate(x, y));
   }
 
   /// Scales by [factor], keeping the aspect ratio.
@@ -111,12 +119,14 @@ class Matrix4Transform {
     if (x == 1 && y == 1)
       return this;
     else if ((origin == null) || (origin.dx == 0.0 && origin.dy == 0.0))
-      return Matrix4Transform._(m.clone()..multiply(Matrix4.identity()..scale(x, y)));
+      return Matrix4Transform._(//
+          m.clone()..multiply(Matrix4.identity()..scale(x, y)));
     else
-      return Matrix4Transform._(m.clone()
-        ..translate(origin.dx, origin.dy)
-        ..multiply(Matrix4.identity()..scale(x, y))
-        ..translate(-origin.dx, -origin.dy));
+      return Matrix4Transform._(//
+          m.clone()
+            ..translate(origin.dx, origin.dy)
+            ..multiply(Matrix4.identity()..scale(x, y))
+            ..translate(-origin.dx, -origin.dy));
   }
 
   /// Scales by [factor] horizontally. Keeps the same vertical scale.
@@ -138,7 +148,9 @@ class Matrix4Transform {
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical).
   /// Positive goes down/right.
   Matrix4Transform translateOffset(Offset offset) {
-    return (offset == null) ? this : Matrix4Transform._(m.clone()..translate(offset.dx, offset.dy));
+    return (offset == null) //
+        ? this
+        : Matrix4Transform._(m.clone()..translate(offset.dx, offset.dy));
   }
 
   /// Translates up by [distance] pixels.
@@ -160,35 +172,50 @@ class Matrix4Transform {
 
   /// Translates by [distance] pixels to the [direction].
   /// The direction is in degrees (0 to 360 one turn) clockwise from the positive x-axis.
-  Matrix4Transform directionDegrees(double directionDegrees, double distance) =>
-      translateOffset(Offset.fromDirection(_toRadians(directionDegrees), distance));
+  Matrix4Transform directionDegrees(
+    double directionDegrees,
+    double distance,
+  ) =>
+      translateOffset(
+        Offset.fromDirection(
+          _toRadians(directionDegrees),
+          distance,
+        ),
+      );
 
   /// Translates up and right by [distance] pixels of distance.
-  Matrix4Transform upRight(double distance) => direction(-pi / 4, distance);
+  Matrix4Transform upRight(double distance) => //
+      direction(-pi / 4, distance);
 
   /// Translates up and left [distance] pixels.
-  Matrix4Transform upLeft(double distance) => direction(-pi * 3 / 4, distance);
+  Matrix4Transform upLeft(double distance) => //
+      direction(-pi * 3 / 4, distance);
 
   /// Translates down and right by [distance] pixels.
-  Matrix4Transform downRight(double distance) => direction(pi / 4, distance);
+  Matrix4Transform downRight(double distance) => //
+      direction(pi / 4, distance);
 
   /// Translates down and left by [distance] pixels.
-  Matrix4Transform downLeft(double distance) => direction(pi * 3 / 4, distance);
+  Matrix4Transform downLeft(double distance) => //
+      direction(pi * 3 / 4, distance);
 
-  Matrix4Transform flipDiagonally({Offset origin}) =>
+  Matrix4Transform flipDiagonally({Offset origin}) => //
       _flipDegrees(horizontal: 180, vertical: 180, origin: origin);
 
-  Matrix4Transform flipHorizontally({Offset origin}) =>
+  Matrix4Transform flipHorizontally({Offset origin}) => //
       _flipDegrees(horizontal: 180, origin: origin);
 
-  Matrix4Transform flipVertically({Offset origin}) => _flipDegrees(vertical: 180, origin: origin);
+  Matrix4Transform flipVertically({Offset origin}) => //
+      _flipDegrees(vertical: 180, origin: origin);
 
   Matrix4Transform _flip({
     double horizontal = 0.0,
     double vertical = 0.0,
     Offset origin,
   }) {
-    if (((horizontal == null) || (horizontal == 0.0)) && ((vertical == null) || (vertical == 0.0)))
+    if (((horizontal == null) || (horizontal == 0.0)) //
+        &&
+        ((vertical == null) || (vertical == 0.0)))
       return this;
     else if ((origin == null) || (origin.dx == 0.0 && origin.dy == 0.0))
       return Matrix4Transform._(m.clone()
@@ -218,7 +245,7 @@ class Matrix4Transform {
   double _toRadians(double angleDegrees) => angleDegrees * pi / 180;
 }
 
-// /////////////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////
 
 /// An interpolation between two [Matrix4Transform]s.
 ///
@@ -237,8 +264,10 @@ class Matrix4TransformTween extends Tween<Matrix4Transform> {
 
   @override
   Matrix4Transform lerp(double t) {
-    return Matrix4Transform.from(Matrix4Tween(begin: begin.matrix4, end: end.matrix4).lerp(t));
+    return Matrix4Transform.from(
+      Matrix4Tween(begin: begin.matrix4, end: end.matrix4).lerp(t),
+    );
   }
 }
 
-// /////////////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////
