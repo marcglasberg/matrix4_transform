@@ -103,7 +103,7 @@ class Matrix4Transform {
   /// Smaller for <1.
   /// Same size for 1 (and passing null is the same as passing 1).
   /// No size for 0.
-  /// /// Passing null is the same as passing 1.
+  /// Passing null is the same as passing 1.
   Matrix4Transform scale(double factor, {Offset origin}) =>
       scaleBy(x: factor, y: factor, origin: origin);
 
