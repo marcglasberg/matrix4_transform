@@ -95,10 +95,10 @@ Widget wrap(Box box) {
 
 class Box extends StatelessWidget {
   final Matrix4 matrix;
-  final String description;
+  final String? description;
 
   Box(
-    Matrix4 matrix,
+    Matrix4? matrix,
     this.description,
   ) : matrix = matrix ?? Matrix4.identity();
 
