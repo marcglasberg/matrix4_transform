@@ -23,7 +23,7 @@ Example:
     );
 
 To see it in action, run the example in
-the [example tab](https://pub.dartlang.org/packages/matrix4_transform#-example-tab-).
+the [example tab](https://pub.dev/packages/matrix4_transform/example).
 
 ## How to use it
 
