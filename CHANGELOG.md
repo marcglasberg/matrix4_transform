@@ -1,3 +1,7 @@
+## [3.0.0] - 2022/11/16
+
+* Flutter 3.16.0 compatible.
+
 ## [2.0.1] - 2020/09/20
 
 * Docs improvement.
