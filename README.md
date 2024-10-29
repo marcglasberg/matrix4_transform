@@ -4,10 +4,11 @@
 
 # matrix4_transform
 
-Have you noticed the `transform` parameter in the `Container` and `Transform` widgets, that let you
-move, rotate, resize and flip?
+Have you noticed the `transform` parameter in the `Container` and `Transform` widgets,
+which lets you move, rotate, resize, and flip?
 
-This package is a helper math class that makes it easy to create Matrix4 transformations.
+This package provides a helper math class that makes it easy to create `Matrix4`
+transformations.
 
 ![](./example/lib/animated_align_positioned.gif)
 
@@ -51,9 +52,11 @@ In the end, call `matrix4`:
          .rotate(pi/2)
          .matrix4;                        
 
-Note: The transformations will be applied in order, and their order may change the end result.
+Note: The transformations will be applied in order, and their order may change the end
+result.
 
-If you already have a matrix4 and want to further transform it, you can use the `from` constructor:
+If you already have a matrix4 and want to further transform it, you can use the `from`
+constructor:
 
     Matrix4 myMatrix = ...;
     
@@ -99,14 +102,14 @@ A `Matrix4TransformTween` is provided in this package, and can be used in animat
 A `Matrix4Transform` can be used to animate:
 
 * `AlignPositioned` or `AnimatedAlignPositioned` widgets from
-  the <a href="https://pub.dev/packages/align_positioned">AlignPositioned</a> package, that accept
-  a `Matrix4Transform` directly. The center of rotation/scale can be defined by their `alignment`
-  parameter.
+  the <a href="https://pub.dev/packages/align_positioned">AlignPositioned</a> package,
+  that accept a `Matrix4Transform` directly. The center of rotation/scale can be defined
+  by their `alignment` parameter.
 
 * Any widget that accepts a Matrix4 transformation parameter, like `Container`,
-  or `AnimatedContainer`. Note: Since `Matrix4Tween` will not animate linearly as you'd expect, it's
-  possible that the intermediary transformations will be "strange", although the start and end
-  should be correct.
+  or `AnimatedContainer`. Note: Since `Matrix4Tween` will not animate linearly as you'd
+  expect, it's possible that the intermediary transformations will be "strange", although
+  the start and end should be correct.
 
 ***
 
@@ -117,7 +120,8 @@ A `Matrix4Transform` can be used to animate:
 *The Flutter packages I've authored:*
 
 * <a href="https://pub.dev/packages/async_redux">async_redux</a>
-* <a href="https://pub.dev/packages/fast_immutable_collections">fast_immutable_collections</a>
+* <a href="https://pub.dev/packages/fast_immutable_collections">
+  fast_immutable_collections</a>
 * <a href="https://pub.dev/packages/provider_for_redux">provider_for_redux</a>
 * <a href="https://pub.dev/packages/i18n_extension">i18n_extension</a>
 * <a href="https://pub.dev/packages/align_positioned">align_positioned</a>
@@ -150,7 +154,8 @@ A `Matrix4Transform` can be used to animate:
 
 *My article in the official Flutter documentation*:
 
-* <a href="https://flutter.dev/docs/development/ui/layout/constraints">Understanding constraints</a>
+* <a href="https://flutter.dev/docs/development/ui/layout/constraints">Understanding
+  constraints</a>
 
 <br>_Marcelo Glasberg:_<br>
 _https://github.com/marcglasberg_<br>
