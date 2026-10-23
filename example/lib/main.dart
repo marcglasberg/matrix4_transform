@@ -54,7 +54,7 @@ class Demo extends StatelessWidget {
 
   Container box(String text) {
     return Container(
-      color: Colors.red.withOpacity(0.5),
+      color: Colors.red.withValues(alpha: 0.5),
       width: 140,
       height: 180,
       child: Text(text, style: TextStyle(fontSize: 10.5)),
