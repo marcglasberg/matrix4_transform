@@ -41,9 +41,9 @@ class Matrix4Transform {
       return Matrix4Transform._(m.clone()..rotateZ(angleRadians));
     else
       return Matrix4Transform._(m.clone()
-        ..translate(origin.dx, origin.dy)
+        ..translateByDouble(origin.dx, origin.dy, 0.0, 1.0)
         ..multiply(Matrix4.rotationZ(angleRadians))
-        ..translate(-origin.dx, -origin.dy));
+        ..translateByDouble(-origin.dx, -origin.dy, 0.0, 1.0));
   }
 
   /// Rotates by [angleDegrees] degrees (0 to 360 one turn), clockwise.
@@ -69,7 +69,7 @@ class Matrix4Transform {
   Matrix4Transform translate({double x = 0, double y = 0}) {
     return (x == 0 && y == 0) //
         ? this
-        : Matrix4Transform._(m.clone()..leftTranslate(x, y));
+        : Matrix4Transform._(m.clone()..leftTranslateByDouble(x, y, 0.0, 1.0));
   }
 
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical), but in
@@ -87,7 +87,7 @@ class Matrix4Transform {
   }) {
     return (x == 0 && y == 0) //
         ? this
-        : Matrix4Transform._(m.clone()..translate(x, y));
+        : Matrix4Transform._(m.clone()..translateByDouble(x, y, 0.0, 1.0));
   }
 
   /// Scales by [factor], keeping the aspect ratio.
@@ -105,17 +105,18 @@ class Matrix4Transform {
   /// Same size for 1 (and passing null is the same as passing 1).
   /// No size for 0.
   Matrix4Transform scaleBy({double x = 1, double y = 1, Offset? origin}) {
+    // Matrix4.scale(x, y) also scaled Z by x; preserve that behavior.
     if (x == 1 && y == 1)
       return this;
     else if ((origin == null) || (origin.dx == 0.0 && origin.dy == 0.0))
       return Matrix4Transform._(//
-          m.clone()..multiply(Matrix4.identity()..scale(x, y)));
+          m.clone()..multiply(Matrix4.identity()..scaleByDouble(x, y, x, 1.0)));
     else
       return Matrix4Transform._(//
           m.clone()
-            ..translate(origin.dx, origin.dy)
-            ..multiply(Matrix4.identity()..scale(x, y))
-            ..translate(-origin.dx, -origin.dy));
+            ..translateByDouble(origin.dx, origin.dy, 0.0, 1.0)
+            ..multiply(Matrix4.identity()..scaleByDouble(x, y, x, 1.0))
+            ..translateByDouble(-origin.dx, -origin.dy, 0.0, 1.0));
   }
 
   /// Scales by [factor] horizontally. Keeps the same vertical scale.
@@ -137,7 +138,7 @@ class Matrix4Transform {
   /// Translates by [x] pixels (horizontal) and [y] pixels (vertical).
   /// Positive goes down/right.
   Matrix4Transform translateOffset(Offset offset) =>
-      Matrix4Transform._(m.clone()..translate(offset.dx, offset.dy));
+      Matrix4Transform._(m.clone()..translateByDouble(offset.dx, offset.dy, 0.0, 1.0));
 
   /// Translates up by [distance] pixels.
   Matrix4Transform up(double distance) => translate(y: -distance);
@@ -207,10 +208,10 @@ class Matrix4Transform {
         ..rotateX(vertical));
     else
       return Matrix4Transform._(m.clone()
-        ..translate(origin.dx, origin.dy)
+        ..translateByDouble(origin.dx, origin.dy, 0.0, 1.0)
         ..multiply(Matrix4.rotationY(horizontal))
         ..multiply(Matrix4.rotationX(vertical))
-        ..translate(-origin.dx, -origin.dy));
+        ..translateByDouble(-origin.dx, -origin.dy, 0.0, 1.0));
   }
 
   /// Flips (with perspective) horizontally and vertically by [distance] pixels.

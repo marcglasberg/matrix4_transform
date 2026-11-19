@@ -1,3 +1,8 @@
+## 4.1.0
+
+* Replace deprecated Matrix4 translation and scaling calls with typed double APIs, preserving multiplication order, pivot points, Z and W.
+* Require Dart >=3.9.0, Flutter >=3.35.0 and vector_math >=2.2.0.
+
 ## 4.0.2
 
 * Sponsored by [MyText.ai](https://mytext.ai)
